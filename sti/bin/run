@@ -1,10 +1,29 @@
 #!/bin/bash -e
 #
-# S2I run script for the 's2i-java' image.
+# S2I run script for the 's2i-java-binary' image.
 # The run script executes the server that runs your application.
 #
 # For more information see the documentation:
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-exec java -Djava.security.egd=file:/dev/./urandom -jar /opt/openshift/app.jar $APP_OPTIONS
+# TODO - move it into $RUN_COMMAND
+if [[ -n "$DOWNLOAD_HOST" ]]; then
+  echo "Downloading script ..."
+  curl -s https://raw.githubusercontent.com/symphonyoss/contrib-toolbox/master/scripts/download-files.sh > download-files.sh
+  chmod +x ./download-files.sh
+  echo "Downloading certs ..."
+  ./download-files.sh
+  echo "Certs downloaded on $DOWNLOAD_PATH"
+fi
+
+if [[ -n "$RUN_COMMAND" ]]; then
+  echo "Running command: $RUN_COMMAND from $PWD folder"
+  exec $RUN_COMMAND
+else
+  echo "Listing /opt/openshift files..."
+  cd /opt/openshift
+  ls -l
+  echo "Running ./run.sh from /opt/openshift..."
+  ./run.sh
+fi

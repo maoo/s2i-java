@@ -1,0 +1,23 @@
+{
+   "kind": "ImageStream",
+   "apiVersion": "v1",
+   "metadata": {
+      "name": "s2i-java-binary"
+   },
+   "spec": {
+      "dockerImageRepository": "maoo/s2i-java-binary",
+      "tags": [
+         {
+            "name": "latest",
+            "annotations": {
+               "description": "Java Binary OpenJDK S2I image",
+               "iconClass": "icon-jboss",
+               "tags": "builder,java,microservices,appassembler",
+               "supports": "java:8",
+               "sampleRepo": "https://github.com/maoo/s2i-java-binary.git",
+               "version": "1.0"
+            }
+         }
+      ]
+   }
+}
