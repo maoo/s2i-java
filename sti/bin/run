@@ -17,15 +17,14 @@ if [[ -n "$DOWNLOAD_HOST" ]]; then
   echo "Certs downloaded on $DOWNLOAD_PATH"
 fi
 
-if [[ -n "$RUN_FOLDER" ]]; then
-  echo "Stepping into folder $RUN_FOLDER"
-  cd $RUN_FOLDER
+if [[ -z "$RUN_FOLDER" ]]; then
+  export RUN_FOLDER=/opt/openshift
 fi
+cd $RUN_FOLDER
 
+echo "Running command: $RUN_COMMAND from $PWD folder"
 if [[ -n "$RUN_COMMAND" ]]; then
-  echo "Running command: $RUN_COMMAND from $PWD folder"
   exec $RUN_COMMAND
 else
-  echo "Running ./run.sh from /opt/openshift..."
   ./run.sh
 fi
