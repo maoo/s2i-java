@@ -1,13 +1,13 @@
 language: bash
 
-script: echo "Skipping script item, moving to deployment..."
+script: curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST $DOCKER_TRIGGER_URL
 
-deploy:
-  - provider: script
-  script: curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST $DOCKER_TRIGGER_URL
-  on:
-    branch: master
-  - provider: script
-  script: curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "java9"}' -X POST $DOCKER_TRIGGER_URL
-  on:
-    branch: java9
+# deploy:
+#   - provider: script
+#   script: curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST $DOCKER_TRIGGER_URL
+#   on:
+#     branch: master
+#   - provider: script
+#   script: curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "java9"}' -X POST $DOCKER_TRIGGER_URL
+#   on:
+#     branch: java9
