@@ -1,5 +1,7 @@
 language: bash
 
+script: echo "Skipping script item, moving to deployment..."
+
 deploy:
   - provider: script
   script: curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST $DOCKER_TRIGGER_URL
