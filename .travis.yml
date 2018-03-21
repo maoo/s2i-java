@@ -1,6 +1,7 @@
 language: bash
 
-script: curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST $DOCKER_TRIGGER_URL
+script:
+  - curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST $DOCKER_TRIGGER_URL
 
 # deploy:
 #   - provider: script
