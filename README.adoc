@@ -20,4 +20,3 @@ oc create -f https://raw.githubusercontent.com/maoo/s2i-java-binary/master/ose3/
 
 ** Instant app already provided as template
 ** Using the s2i-java builder image using a regular Git repository
-
